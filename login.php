@@ -9,7 +9,7 @@
     <script src="main.js"></script>
 </head>
     <?php
-        echo "Hello";
+        echo "Hello tjere";
     ?>
 <body>
   
