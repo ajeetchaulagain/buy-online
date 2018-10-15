@@ -1,4 +1,8 @@
 Simple Ajax Based Booking System
 
 
-Use of xmlHTTPRequest
+Ajax Basic Programming - Using XML, Javascript, XPATH, XSLT 
+
+
+
+
