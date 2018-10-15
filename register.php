@@ -2,7 +2,38 @@
 
 header('Content-Type:text/xml');
 
-echo "just a test";
+$dummyVar="";
+
+echo "Hello" ;
+
+$id = $_GET["id"];
+
+$fname = $_GET["fname"];
+$lname = $_GET["lname"];
+$email = $_GET["email"];
+$password = $_GET["password"];
+$conf_password = $_GET["confirm_password"];
+$phone = $_GET["phone"];
+
+
+echo $fname;
+echo "br/>";
+echo $id;
+
+echo "<br/>";
+
+echo $lname;
+echo "<br/>";
+
+echo $email;
+echo "<br/>";
+
+echo $password;
+echo "<br/>";
+echo $conf_password;
+echo $phone;
+// $dummyVar=$fname + " " + $lname + " " + $email + " " + $password + " " + $conf_password + " " + $phone;
+
 
 if (isset($_GET['fname']) && isset($_GET["email"]) && isset($_GET["lname"]) && isset($_GET["password"]) && isset($_GET["phone"]) && isset($_GET["confirm
 _password"]) ) {
@@ -14,6 +45,7 @@ _password"]) ) {
     $conf_password = $_GET["confirm_password"];
     $phone = $_GET["phone"];
 
+        echo "Inside isset";
     $errorMessage = "";
 
     if(empty($fname)){
@@ -34,16 +66,12 @@ _password"]) ) {
     if(empty($conf_password)){
         $errorMessage.="You must enter a confirmation password <br/>";
     }
-
-    
    
-
-   
-
     if(empty($phone)){
         $errorMessage.="You must enter a phone number <br/>";
     }
 
+    $errorMessage.="hey in php file";
     echo $errorMessage;
     
 
