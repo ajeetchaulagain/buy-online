@@ -4,11 +4,36 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+   
+    <script type ="text/javascript" src="js/javascript.js"></script>
+    <style>
+        a{
+            padding: 10px;
+            text-decoration: none;
+        }
+    </style>
+
 </head>
-<body>Î
-    test page this isSDF
+<body>
+    <div id="wrap">
+        <h1>Manager Login</h1>
+        <hr/>
+        <br/><br/>
+        <table>
+                <tr>
+                    <td>Manager ID: </td>
+                    <td><input type="text" name="email" id="id"></td>
+                </tr>
+            
+                <tr>
+                    <td>Password: </td>
+                    <td><input type="password" name="password" id="password"></td>
+                </tr>
+                <tr>
+                    <td><button onclick="initManagerLogin();">Login</button></td>
+                </tr>
+            </table>
+    <p id="msg" style="color: red;"></p>
+        </div>
 </body>
 </html>

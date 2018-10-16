@@ -65,4 +65,38 @@ function initLogin(){
 
 }
 
+function initManagerLogin(){
+    var id = document.getElementById('id').value;
+    var password = document.getElementById('password').value;
+   
+
+    xmlhttp.open("GET", "mlogin.php?id="+id+"&password="+password,true);
+    xmlhttp.onreadystatechange= function(){
+        if((xmlhttp.readyState==4) && (xmlhttp.status==200)){
+            
+           if(xmlhttp.responseText=="yes"){
+               var elem = document.getElementById("wrap");
+               elem.parentNode.removeChild(elem);
+               
+               var html="<div id='wrap' style='text-align:center; padding:20px; margin-top:100px;'>"+
+               "<a href='listing.htm' style='padding:10px;'> Listing </a>"+
+               "<a href='processing.htm' style='padding:10px';> Processing </a>"+
+               "<a href='logout.htm' style='padding:10px;'> Logout </a></div>";
+
+
+
+               document.write(html);
+               document.write("<hr/>")
+
+               return false;
+           }
+           else{
+            document.getElementById('msg').innerHTML=xmlhttp.responseText;
+           }
+        }
+    };
+    xmlhttp.send(null);
+    
+};
+
 
