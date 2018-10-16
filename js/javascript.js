@@ -96,7 +96,24 @@ function initManagerLogin(){
         }
     };
     xmlhttp.send(null);
-    
-};
+}
+
+
+function addItem(){
+    var item_name=document.getElementById('item_name').value;
+    var item_price = document.getElementById('item_price').value;
+    var item_quantity = document.getElementById('item_quantity').value;
+    var item_description = document.getElementById('item_description').value;
+
+    alert(item_name);
+    xmlhttp.open("GET","additem.php?item_name="+item_name+"&item_price="+item_price+"&item_quantity="+item_quantity+"&item_description="+item_description,true);
+    xmlhttp.onreadystatechange = function(){
+        
+        if((xmlhttp.readyState==4) && (xmlhttp.status==200)){
+            document.getElementById("message").innerHTML=xmlhttp.responseText;
+        }
+    };
+    xmlhttp.send(null);
+}
 
 

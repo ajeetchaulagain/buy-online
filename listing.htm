@@ -4,13 +4,81 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
-    <script src="js/javascript.js"></script>
+    <script type ="text/javascript" src="js/javascript.js"></script>
+    <style>
+        #wrap{
+            text-align: center;
+            margin-top:20px;
+            padding: 20px;
+        }
+        #content-wrap{
+           margin: 0 auto;
+           width: 400px;
+        }
+        a{
+            padding: 20px;
+        }
+        table{
+            width: 400px;
+        }
+        table,tr,td{
+            border:1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        td{
+            padding: 10px;
+        }
+        .buttons{
+            background-color: black;
+        }
+    </style>
 </head>
 
 
 <body>
 
-    <div id=""
+    <div id="wrap">
+        <a href="listing.htm">Listing</a>
+        <a href="processing.htm">processing</a>
+        <a href="logout.htm">Logout</a>
+    </div>
+    <hr/>
+    <div id="content-wrap">
+    <h2>Add New Item</h2>
+    <table>
+        <tr>
+            <td>Item Name</td>
+            <td><input type="text" name="item_name" id="item_name"></td>
+        </tr>
+        <tr>
+                <td>Item Price</td>
+                <td><input type="text" name="item_id" id="item_price"></td> 
+
+            </tr>
+            <tr>
+                    <td>Item Quantity</td>
+                    <td><input type="text" name="item_quantity" id="item_quantity"></td> 
+                    
+            </tr>
+
+            <tr>
+                    <td>Item Description</td>
+                    <td><textarea type="text" id="item_description" name="item_description" rows="2"></textarea></td> 
+                    
+            </tr>
+            <tr class="buttons">
+                <td><button onclick="addItem();">Add Item</button></td>
+                <td><button onclick="reset();">Reset</button></td>
+            </tr>
+         
+
+    </table>
+
+    <p id="message" style="color: red;"></p>
+    </div>
+
+   
     
 </body>
 </html>

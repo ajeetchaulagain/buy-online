@@ -66,7 +66,7 @@ if (isset($fname) && isset($lname) && isset($email) && isset($password) && isset
 	if (!file_exists($xmlfile)){ // if the xml file does not exist, create a root node $customers
 		$customers = $doc->createElement('customers');
 		$doc->appendChild($customers);
-		echo "test 2";
+		
 		$doc->save($xmlfile);
 	}
 	else { // load the xml file
