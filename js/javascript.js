@@ -1,5 +1,5 @@
 var xmlhttp=false;
-alert("Hey you just get into AJAX!!!");
+
 
 if(window.XMLHttpRequest){
     xmlhttp = new XMLHttpRequest();
@@ -13,7 +13,7 @@ else if(window.ActiveXObject){
 // passess the information from customer registration field to php file
 
 function initRegistration(){
-    // alert("Hey you are in initRegistration method");
+
 
     var fname = document.getElementById('fname').value;
 
@@ -21,7 +21,7 @@ function initRegistration(){
     var password = document.getElementById('password').value;
     var conf_password = document.getElementById('confirm_password').value;
     var email = document.getElementById('email').value;
-    var phone = document.getElementById('phone').value;
+    var phone = document.getElementById('phone').value  ;
 
    
 
@@ -38,6 +38,31 @@ function initRegistration(){
 
     xmlhttp.send(null);
     
+}
+
+function initLogin(){
+    // alert("in initLogin method");
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+
+
+    xmlhttp.open("GET","login.php?email="+encodeURIComponent(email)+"&password="+password, true);
+    
+    xmlhttp.onreadystatechange = function(){
+        if((xmlhttp.readyState==4) && (xmlhttp.status==200)){
+             
+            var redirect = xmlhttp.responseText;
+            if(redirect=='yes'){
+                window.location.href = 'buying.html';
+            }
+            else{
+                document.getElementById("msg").innerHTML = xmlhttp.responseText;
+            }
+            
+        }
+    };
+    xmlhttp.send(null);
+
 }
 
 

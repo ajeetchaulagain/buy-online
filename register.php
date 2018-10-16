@@ -67,11 +67,14 @@ if (isset($fname) && isset($lname) && isset($email) && isset($password) && isset
 		$customers = $doc->createElement('customers');
 		$doc->appendChild($customers);
 		echo "test 2";
+		$doc->save($xmlfile);
 	}
 	else { // load the xml file
 		
 		$doc->preserveWhiteSpace = FALSE; 	
-		$doc->load($xmlfile);  
+		$doc->load($xmlfile);
+		  
+	}
 	
 		$xmlObject = simplexml_load_file($xmlfile);
     
@@ -84,44 +87,62 @@ if (isset($fname) && isset($lname) && isset($email) && isset($password) && isset
 				break;
 			}
 		}
-	}
 			
 				if(!$emailExist){
 				//create a customer node under customers node
 				$customers = $doc->getElementsByTagName('customers')->item(0);
 				$customer = $doc->createElement('customer');
 				$customers->appendChild($customer);
-				
-				// create a Name node ....
-				$Name = $doc->createElement('name');
-				$customer->appendChild($Name);
-				$nameValue = $doc->createTextNode($fname);
-				$Name->appendChild($nameValue);
+
+
+				// create ID node ....
+				$ID = $doc->createElement('id');
+				$customer->appendChild($ID);
+				$idValue = $doc->createTextNode($id);
+				$ID->appendChild($idValue);
+
+				// create a First Name node ....
+				$firstName = $doc->createElement('fname');
+				$customer->appendChild($firstName);
+				$fnameValue = $doc->createTextNode($fname);
+				$firstName->appendChild($fnameValue);
+
+				// create a Last Name node ....
+				$lastName = $doc->createElement('lname');
+				$customer->appendChild($lastName);
+				$lnameValue = $doc->createTextNode($lname);
+				$lastName->appendChild($fnameValue);
 				
 				//create a Email node ....
 				$Email = $doc->createElement('email');
 				$customer->appendChild($Email);
 				$emailValue = $doc->createTextNode($email);
 				$Email->appendChild($emailValue);
+
 				
-				//create a pwd node ....
+				//create a password node ....
 				$pwd = $doc->createElement('password');
 				$customer->appendChild($pwd);
 				$pwdValue = $doc->createTextNode($password);
 				$pwd->appendChild($pwdValue);
+
+					
+				//create a phone node ....
+				$Phone = $doc->createElement('phone');
+				$customer->appendChild($Phone);
+				$phoneValue = $doc->createTextNode($phone);
+				$Phone->appendChild($phoneValue);
+				
 				
 				//save the xml file
 				$doc->formatOutput = true;
 				$doc->save($xmlfile);  
 				echo "Cheers. Your account is successfully registerd!<br/>";
 		
-				echo "<br/><span style='color:blue;'>Now you can start shopping from <a href='buying.htm' style='font-weight:bold';>here</a></span>";
+				echo "<br/><span style='color:blue;'><a href='buyonline.htm' style='font-weight:bold; font-size:18px; background-color:black; color:white; padding:5px; text-decoration:none;';>Go back to home page</a></span>";
 				}
-			}
-		
 
-    
-
+}
 }
 
 
