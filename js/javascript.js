@@ -30,10 +30,14 @@ function initRegistration(){
     
     xmlhttp.onreadystatechange = function(){
         if((xmlhttp.readyState==4) && (xmlhttp.status==200)){
-            document.getElementById("message").innerHTML = xmlhttp.responseText;
+           document.getElementById("message").innerHTML = xmlhttp.responseText;
+        //    var xmlDoc = xmlhttp.responseText;
+        //    alert(xmlDoc);
         }
     };
 
     xmlhttp.send(null);
     
 }
+
+

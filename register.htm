@@ -7,8 +7,7 @@
     <title>Customer Registration</title>
 </head>
 <body>
-
-      
+    <h1>Registration</h1>
                 <table>
                     <tr>
                         <td>First Name: </td>
@@ -18,8 +17,6 @@
                             <td>Last Name: </td>
                             <td><input type="text" name="lname" id="lname"><span></td>
                     </tr>
-
-                
                     <tr>
                         <td>Email:</td>
                         <td><input type="text" name="email" id="email"></td>	
@@ -27,25 +24,24 @@
                     <tr>
                             <td>Password: </td>
                             <td><input type="password" name="password" id="password"></td>
-                        </tr>
-                        <tr>
-                            <td>Confirm Password: </td>
-                            <td><input type="password" name="confirm_password" id="confirm_password"></td>
-                        </tr>
-
-                    <tr>
-                        <td>Phone:</td>
-                        <td><input type="text" name="phone" id="phone"><span></td>
                     </tr>
                     <tr>
-                        <td><td><button onclick="initRegistration();">Register</button></td></td>
+                            <td>Confirm Password: </td>
+                            <td><input type="password" name="confirm_password" id="confirm_password"></span></td>
+                    </tr>   
+                    <tr>
+                        <td>Phone:</td>
+                        <td><input type="text" name="phone" id="phone"><span style="font-size:10px; color:blue;"> Optional. Input Format: 0d dddddddd or (0d)dddddddd</span></td>
+                    </tr>
+                    <tr>
+                        <td><button onclick="initRegistration();">Register</button></td>
                     </tr>
 
                 </table>
                 
     
 
-                <p id="message"></p>
+                <p id="message" style="color: red;"></p>
                 
         
 
