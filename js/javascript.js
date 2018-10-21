@@ -178,7 +178,7 @@ function initRemove(id){
     xmlhttp.open("GET", "remove_cart.php?id="+id,true);
     xmlhttp.onreadystatechange = function(){
         if((xmlhttp.readyState==4) && (xmlhttp.status==200)){
-            alert("check");
+         
             document.getElementById("q"+id).innerHTML= xmlhttp.responseText;
             alert(xmlhttp.responseText);
         } 
@@ -187,13 +187,12 @@ function initRemove(id){
 }
 
 function confirm_purchase(){
-    alert("confirm");
     
     xmlhttp.open("GET", "confirm.php",true);
     xmlhttp.onreadystatechange = function(){
-        alert("inside onready state");
+   
         if((xmlhttp.readyState==4) && (xmlhttp.status==200)){
-            alert("response received");
+            
             document.getElementById("cart").innerHTML= xmlhttp.responseText;
             
         } 
@@ -202,9 +201,43 @@ function confirm_purchase(){
 }
 
 function cancel_purchase(){
-    alert ("cancel purchase");
+    
+    xmlhttp.open("GET", "cancel.php",true);
+    xmlhttp.onreadystatechange = function(){
+    
+        if((xmlhttp.readyState==4) && (xmlhttp.status==200)){
+            document.getElementById("cart").innerHTML= xmlhttp.responseText;
+            alert(xmlhttp.responseText);
+        } 
+    };
+    xmlhttp.send(null);
 }
 
+
+function initProcess(){
+    xmlhttp.open("GET", "process.php",true);
+        xmlhttp.onreadystatechange = function(){
+            if((xmlhttp.readyState==4) && (xmlhttp.status==200)){
+                document.getElementById("content-wrap").innerHTML=xmlhttp.responseText;
+    
+            }
+        };
+        xmlhttp.send(null);
+}
+
+
+function process(){
+    alert("process button clicked");
+
+    xmlhttp.open("GET", "updateProcess.php",true);
+        xmlhttp.onreadystatechange = function(){
+            if((xmlhttp.readyState==4) && (xmlhttp.status==200)){
+                document.getElementById("content-wrap").innerHTML=xmlhttp.responseText;
+    
+            }
+        };
+        xmlhttp.send(null);
+}
 
 
 

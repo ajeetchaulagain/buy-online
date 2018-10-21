@@ -20,7 +20,7 @@ $xmlObject = simplexml_load_file($xmlfile);
 
 $total = 0;
 foreach($xmlObject->children() as $obj){
-    if($obj->quantity_on_hold>0){
+    if($obj->quantity_sold>0){
         $total = $total + ($obj->item_price*$obj->quantity_on_hold);
         $obj->quantity_sold=$obj->quantity_on_hold;
         $obj->quantity_on_hold= 0;

@@ -1,6 +1,6 @@
 <?php
 
-// header('Content-Type:text/xml');
+header('Content-Type:text/xml');
 
 $xmlfile = '../data/goods.xml'; 
 
@@ -21,16 +21,16 @@ $xmlObject = simplexml_load_file($xmlfile);
 $total = 0;
 foreach($xmlObject->children() as $obj){
     if($obj->quantity_on_hold>0){
-        $total = $total + ($obj->item_price*$obj->quantity_on_hold);
-        $obj->quantity_sold=$obj->quantity_on_hold;
-        $obj->quantity_on_hold= 0;
+        $obj->item_quantity+=$obj->quantity_on_hold;
+        $obj->quantity_on_hold=0;
+
     }
 
 }
 
 file_put_contents($xmlfile, $xmlObject->saveXML());
 
-echo "<h1>Your purchase has been confirmed and total amount to pay is $".$total."</h2>";
+echo "<h1>Your purchase request has been cancelled, welcome to shop next time</h1>";
 
 
 ?>
