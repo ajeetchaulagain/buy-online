@@ -8,6 +8,11 @@ $dummyVar="";
 
 $item_name = $_GET["item_name"];
 
+$item_number = 0;
+
+$quantity_on_hold = 0;
+$quantity_sold = 0;
+
 $item_price = $_GET["item_price"];
 $item_quantity = $_GET["item_quantity"];
 $item_description = $_GET["item_description"];
@@ -52,6 +57,7 @@ if (isset($item_name) && isset($item_quantity) && isset($item_description) && is
                 $items = $doc->createElement('items');
                 $doc->appendChild($items);
                 $doc->save($xmlfile);
+
             }
             else{
                 $doc->preserveWhiteSpace = FALSE; 	
@@ -59,119 +65,90 @@ if (isset($item_name) && isset($item_quantity) && isset($item_description) && is
             }
 
             $xmlObject = simplexml_load_file($xmlfile);
+            $itemExist = false;
+
+            foreach($xmlObject->children() as $obj){
+                if($obj->item_name==$item_name){
+                    echo "Given item name (".$item_name.") already exist. Please add new item";
+                    $itemExist = true;
+                    break;
+                }
+            }
+
+
+            foreach($xmlObject->children() as $obj){
+                $item_number=(int)$obj->item_number;
+            }
+
+            $item_number = $item_number+1;
+
+           
+
+            if(!$itemExist){
+
+                 //creating item node under items node  
+                $items = $doc->getElementsByTagName('items')->item(0);
+                $item=  $doc->createElement('item');
+                $items->appendChild($item);
+
+
+                // creating item_number node
+                $itemNumber = $doc->createElement('item_number');
+				$item->appendChild($itemNumber);
+				$itemValue = $doc->createTextNode($item_number);
+                $itemNumber->appendChild($itemValue);
+
+                
+                // creating item_name node
+                $itemName = $doc->createElement('item_name');
+				$item->appendChild($itemName);
+				$itemNameVlaue = $doc->createTextNode($item_name);
+                $itemName->appendChild($itemNameVlaue);
+                
+                // creating item_quantity node
+                $itemQuantity = $doc->createElement('item_quantity');
+                $item->appendChild($itemQuantity);
+                $itemQuantityValue = $doc->createTextNode($item_quantity);
+                $itemQuantity->appendChild($itemQuantityValue);
+                  
+                           
+                // creating quantity_on_hold node
+                $quantityHold = $doc->createElement('quantity_on_hold');
+                $item->appendChild($quantityHold);
+                $quantityHoldValue = $doc->createTextNode($quantity_on_hold);
+                $quantityHold->appendChild($quantityHoldValue);
+
+                 // creating quantity_sold node
+                 $quantitySold = $doc->createElement('quantity_sold');
+                 $item->appendChild($quantitySold);
+                 $quantitySoldValue = $doc->createTextNode($quantity_sold);
+                 $quantitySold->appendChild($quantitySoldValue);
+
+
+                  // creating item_price node
+                  $itemPrice = $doc->createElement('item_price');
+                  $item->appendChild($itemPrice);
+                  $itemPriceValue = $doc->createTextNode($item_price);
+                  $itemPrice->appendChild($itemPriceValue);
+
+
+                  // creating item_description node
+                  $itemDescription = $doc->createElement('item_description');
+                  $item->appendChild($itemDescription);
+                  $itemDescriptionValue = $doc->createTextNode($item_description);
+                  $itemDescription->appendChild($itemDescriptionValue);
+
+                  $doc->formatOutput = true;
+                  $doc->save($xmlfile);
+                  echo "Item has been listed in the system, and the item number is ".$item_number;
+
+            }
 
 
 
     echo $errorMessage;
 }
-//     if(empty($conf_password)){
-//         $errorMessage.="* You must enter a confirmation password <br/>";
-//     }
-   
-//     if($password!=$conf_password){
-//         $errorMessage.="* Your confirmation password doesn't matches with original password. Please enter correct password<br/>";
-//     }
 
-//     if(!empty($phone)){
-        
-//         if(!preg_match("/^[0][1-9][ ][0-9]{8}$/",$phone) && !preg_match("/^[(][0][1-9][)][0-9]{8}$/",$phone)){
-//             $errorMessage.="* Invalid phone number";
-//         }
-
-//     }
-
-//     if($errorMessage!=""){
-//         echo $errorMessage;
-//     }
-//     else{
-//         // $xmlfile = '../data/testData.xml'; // path for data folder in mercury server
-        
-// 		$xmlfile = '../data/testData.xml'; 
-
-	
-// 	$doc = new DomDocument();
-	
-// 	if (!file_exists($xmlfile)){ // if the xml file does not exist, create a root node $customers
-// 		$customers = $doc->createElement('customers');
-// 		$doc->appendChild($customers);
-// 		echo "test 2";
-// 		$doc->save($xmlfile);
-// 	}
-// 	else { // load the xml file
-		
-// 		$doc->preserveWhiteSpace = FALSE; 	
-// 		$doc->load($xmlfile);
-		  
-// 	}
-	
-// 		$xmlObject = simplexml_load_file($xmlfile);
-    
-// 		$emailExist=false;
-
-// 		foreach($xmlObject->children() as $obj ){
-// 			if($obj->email==$email){
-// 				echo "Given email (".$email.") ". "aready exixt. Please enter new one";
-// 				$emailExist=true;
-// 				break;
-// 			}
-// 		}
-			
-// 				if(!$emailExist){
-// 				//create a customer node under customers node
-// 				$customers = $doc->getElementsByTagName('customers')->item(0);
-// 				$customer = $doc->createElement('customer');
-// 				$customers->appendChild($customer);
-
-
-// 				// create ID node ....
-// 				$ID = $doc->createElement('id');
-// 				$customer->appendChild($ID);
-// 				$idValue = $doc->createTextNode($id);
-// 				$ID->appendChild($idValue);
-
-// 				// create a First Name node ....
-// 				$firstName = $doc->createElement('fname');
-// 				$customer->appendChild($firstName);
-// 				$fnameValue = $doc->createTextNode($fname);
-// 				$firstName->appendChild($fnameValue);
-
-// 				// create a Last Name node ....
-// 				$lastName = $doc->createElement('lname');
-// 				$customer->appendChild($lastName);
-// 				$lnameValue = $doc->createTextNode($lname);
-// 				$lastName->appendChild($fnameValue);
-				
-// 				//create a Email node ....
-// 				$Email = $doc->createElement('email');
-// 				$customer->appendChild($Email);
-// 				$emailValue = $doc->createTextNode($email);
-// 				$Email->appendChild($emailValue);
-
-				
-// 				//create a password node ....
-// 				$pwd = $doc->createElement('password');
-// 				$customer->appendChild($pwd);
-// 				$pwdValue = $doc->createTextNode($password);
-// 				$pwd->appendChild($pwdValue);
-
-					
-// 				//create a phone node ....
-// 				$Phone = $doc->createElement('phone');
-// 				$customer->appendChild($Phone);
-// 				$phoneValue = $doc->createTextNode($phone);
-// 				$Phone->appendChild($phoneValue);
-				
-				
-// 				//save the xml file
-// 				$doc->formatOutput = true;
-// 				$doc->save($xmlfile);  
-// 				echo "Cheers. Your account is successfully registerd!<br/>";
-		
-// 				echo "<br/><span style='color:blue;'><a href='buyonline.htm' style='font-weight:bold; font-size:18px; background-color:black; color:white; padding:5px; text-decoration:none;';>Go back to home page</a></span>";
-// 				}
-
-// }
-// }
-
+}
 
 ?>

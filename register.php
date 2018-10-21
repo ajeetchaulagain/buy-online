@@ -16,7 +16,6 @@ $conf_password = $_GET["confirm_password"];
 $phone = $_GET["phone"];
 
 
-
 if (isset($fname) && isset($lname) && isset($email) && isset($password) && isset($conf_password) && isset($phone)){    
 
     $errorMessage = "";
@@ -66,7 +65,6 @@ if (isset($fname) && isset($lname) && isset($email) && isset($password) && isset
 	if (!file_exists($xmlfile)){ // if the xml file does not exist, create a root node $customers
 		$customers = $doc->createElement('customers');
 		$doc->appendChild($customers);
-		
 		$doc->save($xmlfile);
 	}
 	else { // load the xml file
@@ -82,12 +80,12 @@ if (isset($fname) && isset($lname) && isset($email) && isset($password) && isset
 
 		foreach($xmlObject->children() as $obj ){
 			if($obj->email==$email){
-				echo "Given email (".$email.") ". "aready exixt. Please enter new one";
+				echo "Given email (".$email.") ". "already exist. Please enter new one";
 				$emailExist=true;
 				break;
 			}
 		}
-			
+		
 				if(!$emailExist){
 				//create a customer node under customers node
 				$customers = $doc->getElementsByTagName('customers')->item(0);
@@ -133,6 +131,7 @@ if (isset($fname) && isset($lname) && isset($email) && isset($password) && isset
 				$phoneValue = $doc->createTextNode($phone);
 				$Phone->appendChild($phoneValue);
 				
+			
 				
 				//save the xml file
 				$doc->formatOutput = true;

@@ -1,36 +1,30 @@
 <?php 
 
-// header('Content-Type: text/xml');
+// header('Content-Type:text/xml');
 
-$xmlfile = '../data/testData.xml';
+$xmlfile = '../data/goods.xml'; 
 
-if (!file_exists($xmlfile)){ // if the xml file does not exist
-	echo "The xml file does not exist.";
-} else {
-	// $doc = new DomDocument();
-	// //$doc->preserveWhiteSpace = FALSE; 
-	// // $doc->load($xmlfile); 
-	
-    // // $xml= ($doc->saveXML());
-    $xml = simplexml_load_file($xmlfile);
-    
+$errorMessage = "";
+$id = $_GET["id"];
 
-    // echo "title: ". $xml->customer->name;
 
-    $email ="chaulagain";
+if(!file_exists($xmlfile)){
 
-    foreach($xml->children() as $obj ){
-        if($obj->email==$email){
-            echo "email already exist";
-            break;
-            echo "test";
-        }
-        echo "test";
-       
-        
-    }
-    echo "test";
-    // $type = gettype($xml);
-    // echo $type;
+    $errorMessage.="Given file doesnot exist";
 }
+else{
+    $xml = simplexml_load_file($xmlfile);
+}
+
+foreach($xml->children() as $obj){
+    
+    $quantity = $obj->item_quantity;
+    
+    if($obj->item_number==$id){
+       $obj->item_quantity += 1;
+    }
+}
+
+file_put_contents($xmlfile, $xml->saveXML());
+
 ?>

@@ -105,8 +105,8 @@ function addItem(){
     var item_quantity = document.getElementById('item_quantity').value;
     var item_description = document.getElementById('item_description').value;
 
-    alert(item_name);
-    xmlhttp.open("GET","additem.php?item_name="+item_name+"&item_price="+item_price+"&item_quantity="+item_quantity+"&item_description="+item_description,true);
+    
+    xmlhttp.open("GET","additem.php?item_name="+item_name+"&item_price="+item_price+"&item_quantity="+item_quantity+"&item_description="+item_description+"&item_number="+Number(new Date),true);
     xmlhttp.onreadystatechange = function(){
         
         if((xmlhttp.readyState==4) && (xmlhttp.status==200)){
@@ -115,5 +115,104 @@ function addItem(){
     };
     xmlhttp.send(null);
 }
+
+
+function initLogout(){
+
+    alert("logout page");
+    xmlhttp.open("GET","logout.php",true);
+    xmlhttp.onreadystatechange = function(){
+        if((xmlhttp.readyState==4) && (xmlhttp.status==200)){
+            document.getElementById("message").innerHTML=xmlhttp.responseText;
+
+        }
+    };
+    xmlhttp.send(null);
+            
+}
+
+
+function initShopping(){
+
+    setInterval(function(){
+      
+
+        xmlhttp.open("GET", "buying.php",true);
+        xmlhttp.onreadystatechange = function(){
+            if((xmlhttp.readyState==4) && (xmlhttp.status==200)){
+                document.getElementById("shopping").innerHTML=xmlhttp.responseText;
+    
+            }
+        };
+        xmlhttp.send(null);
+
+    },2000)
+   
+  
+    
+
+}
+
+function initCart(id,item_quantity){
+
+    if(item_quantity<=0){
+        alert("Sorry the item is not available for sale");
+    }
+    else{
+        xmlhttp.open("GET", "buying_cart.php?id="+id,true);
+        xmlhttp.onreadystatechange = function(){
+            if((xmlhttp.readyState==4) && (xmlhttp.status==200)){
+                document.getElementById("cart").innerHTML= xmlhttp.responseText;
+            } 
+        };
+        xmlhttp.send(null);   
+
+    }
+    
+   
+    
+}
+
+function initRemove(id){
+    //  
+    xmlhttp.open("GET", "remove_cart.php?id="+id,true);
+    xmlhttp.onreadystatechange = function(){
+        if((xmlhttp.readyState==4) && (xmlhttp.status==200)){
+            alert("check");
+            document.getElementById("q"+id).innerHTML= xmlhttp.responseText;
+            alert(xmlhttp.responseText);
+        } 
+    };
+    xmlhttp.send(null);
+}
+
+function confirm_purchase(){
+    alert("confirm");
+    
+    xmlhttp.open("GET", "confirm.php",true);
+    xmlhttp.onreadystatechange = function(){
+        alert("inside onready state");
+        if((xmlhttp.readyState==4) && (xmlhttp.status==200)){
+            alert("response received");
+            document.getElementById("cart").innerHTML= xmlhttp.responseText;
+            
+        } 
+    };
+    xmlhttp.send(null);
+}
+
+function cancel_purchase(){
+    alert ("cancel purchase");
+}
+
+
+
+
+
+
+
+
+
+
 
 
